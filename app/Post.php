@@ -12,9 +12,11 @@ class Post extends Model
         "content",
         "writer_id",
     ];
+    protected $with = ['writer'];
 
     public function writer()
     {
         return $this->belongsTo(Writer::class);
     }
+
 }

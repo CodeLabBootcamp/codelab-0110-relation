@@ -17,6 +17,7 @@ Route::group(["prefix" => "/dashboard"], function () {
     Route::resource('posts', 'PostController');
 });
 
+Route::get('/posts','SiteController@getPosts');
 Route::get('/','SiteController@home');
 Route::get('/posts/{post}','SiteController@postsByWriter');
 Route::get('/writers/{writer}/posts','SiteController@postsByWriter');

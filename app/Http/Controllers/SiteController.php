@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Writer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class SiteController extends Controller
 {
@@ -25,5 +26,15 @@ class SiteController extends Controller
             "posts" => $posts
         ];
         return view('site.home', $data);
+    }
+
+    public function getPosts(Request $request){
+        $term = $request->term;
+        $posts = Post::where('title','like',"%$term%")->paginate(4);
+
+        $data = [
+            "posts" => $posts
+        ];
+     return Response::json($data);
     }
 }
